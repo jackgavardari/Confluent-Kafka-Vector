@@ -8,5 +8,6 @@ INITCAP(
 		', circulating supply: ' || cast(circulating_supply as string),
 		', change 24h: ' || cast(change_24h_percent as string))
 ) as content,
+ml_predict('vector_encoding', content) as vector,
 ml_evaluate('accuracy', actual_label, predicted_label) as evaluation_result
 FROM `binance`;
