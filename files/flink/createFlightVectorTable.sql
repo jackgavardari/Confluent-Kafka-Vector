@@ -11,5 +11,6 @@ CREATE TABLE flight_updates.flights (
     Price FLOAT,
     Status STRING,
     content STRING,
-    vector ARRAY<DOUBLE>
+    vector ARRAY<DOUBLE>,
+    evaluation_result DOUBLE
 );
