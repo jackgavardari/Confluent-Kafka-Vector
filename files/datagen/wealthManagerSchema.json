@@ -1,0 +1,101 @@
+{
+    "namespace": "wealth-management",
+    "name": "wealthManager",
+    "type": "record",
+    "fields": [
+        {
+            "name": "client_id",
+            "type": "int"
+        },
+        {
+            "name": "investment_id",
+            "type": "int"
+        },
+        {
+            "name": "investment_amount",
+            "type": {
+                "type": "bytes",
+                "logicalType": "decimal",
+                "precision": 10,
+                "scale": 2
+            }
+        },
+        {
+            "name": "investmentType",
+            "type": {
+                "type": "string",
+                "arg.properties": {
+                    "options": [
+                        "stocks",
+                        "bonds",
+                        "mutual funds",
+                        "real estate",
+                        "commodities",
+                        "cryptocurrency",
+                        "savings account",
+                        "certificate of deposit",
+                        "retirement account",
+                        "education savings account"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "riskLevel",
+            "type": {
+                "type": "string",
+                "arg.properties": {
+                    "options": [
+                        "low",
+                        "medium",
+                        "high"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "investmentDuration",
+            "type": {
+                "type": "string",
+                "arg.properties": {
+                    "options": [
+                        "short-term",
+                        "medium-term",
+                        "long-term"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "expectedReturn",
+            "type": {
+                "type": "bytes",
+                "logicalType": "decimal",
+                "precision": 5,
+                "scale": 2
+            }
+        },
+        {
+            "name": "investmentDate",
+            "type": {
+                "type": "string",
+                "arg.properties": {
+                    "options": [
+                        "2023-01-01",
+                        "2023-02-01",
+                        "2023-03-01",
+                        "2023-04-01",
+                        "2023-05-01",
+                        "2023-06-01",
+                        "2023-07-01",
+                        "2023-08-01",
+                        "2023-09-01",
+                        "2023-10-01",
+                        "2023-11-01",
+                        "2023-12-01"
+                    ]
+                }
+            }
+        }
+    ]
+}

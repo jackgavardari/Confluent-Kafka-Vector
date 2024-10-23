@@ -1,61 +1,56 @@
-# Gen AI First Step: Vector Encoding for Retrieval-Augmented Generation (RAG)
-Embark on an exciting journey into the world of Retrieval-Augmented Generation (RAG) for Generative AI! The foundational step in this innovative process is creating a vector store, a dynamic tool designed for performing vector or semantic searches based on meaning. RAG is used to generate prompts to the Large Language Model (LLM) with proprietary data, enabling the LLM to make precise recommendations. 
+# AI Wealth Manager: Transforming Financial Advisory with AI
+Embark on an exciting journey into the world of AI Wealth Management! This innovative process leverages AI to provide personalized financial advice and investment strategies. The foundational step in this process is creating a vector store, a dynamic tool designed for performing vector or semantic searches based on meaning. AI Wealth Management uses proprietary data to make precise recommendations.
 
 |Complete Walkthrough Video|    
 |---------------------------|   
 |[Click here to watch a 25 Minute Video on what you will create](https://www.youtube.com/watch?v=Sv_59o66hRE)|   
 |<a href="https://www.youtube.com/watch?v=Sv_59o66hRE" target="video"><img src="https://img.youtube.com/vi/Sv_59o66hRE/0.jpg" width="700px" height="480px"></a>|   
 
-In the context of Generative AI, a vector is a mathematical representation of data that captures its semantic meaning. It is a numerical array, where each element of the array represents a feature or characteristic of the data. Vectors are used to encode information in a way that can be easily processed by machine learning models, particularly for tasks that involve understanding and generating natural language.
+In the context of AI Wealth Management, a vector is a mathematical representation of data that captures its semantic meaning. It is a numerical array, where each element of the array represents a feature or characteristic of the data. Vectors are used to encode information in a way that can be easily processed by machine learning models, particularly for tasks that involve understanding and generating natural language.
 
-### How Vectors Are Used by Gen AI     
+### How Vectors Are Used by AI Wealth Manager     
    
 ***Data Representation:***   
    
-Vectors transform raw data (such as text, images, or audio) into a structured format that models can understand. For text, this involves converting words, sentences, or documents into fixed-length arrays of numbers.   
+Vectors transform raw data (such as financial statements, market data, or client profiles) into a structured format that models can understand. For text, this involves converting words, sentences, or documents into fixed-length arrays of numbers.   
 
 ***Semantic Search:***   
    
-Vectors allow for semantic search, meaning searches based on the meaning of the data rather than just keywords. For example, similar words or phrases will have similar vector representations, enabling more accurate and relevant search results.   
+Vectors allow for semantic search, meaning searches based on the meaning of the data rather than just keywords. For example, similar financial terms or phrases will have similar vector representations, enabling more accurate and relevant search results.   
 
-***Retrieval-Augmented Generation (RAG):***   
+***Personalized Financial Advice:***   
    
-In RAG, vectors are used to retrieve relevant data from a vector database. When a query is made, the system converts it into a vector and searches the vector database for the closest matches. This relevant data is then used to generate context-aware responses or recommendations. [Learn more about RAG here](https://www.confluent.io/learn/retrieval-augmented-generation-rag/)      
+In AI Wealth Management, vectors are used to retrieve relevant data from a vector database. When a query is made, the system converts it into a vector and searches the vector database for the closest matches. This relevant data is then used to generate context-aware financial advice or investment strategies.      
 
 ***Training and Inference:***   
    
-During the training phase, AI models learn to convert input data into vectors that capture the essential features and relationships. During inference, these vectors are used to generate outputs, such as text generation, image recognition, or recommendation systems.   
+During the training phase, AI models learn to convert input data into vectors that capture the essential features and relationships. During inference, these vectors are used to generate outputs, such as financial advice, investment recommendations, or risk assessments.   
    
 ***Contextual Understanding:***
 
-Vectors enable AI models to understand the context and relationships between different pieces of data. For instance, in natural language processing (NLP), vectors can represent the context of words within a sentence, helping the model generate coherent and contextually appropriate responses.
+Vectors enable AI models to understand the context and relationships between different pieces of financial data. For instance, in natural language processing (NLP), vectors can represent the context of financial terms within a document, helping the model generate coherent and contextually appropriate advice.
 
-### Example Use in Generative AI
-Imagine a Generative AI system designed to recommend clothing items based on user preferences:   
+### Example Use in AI Wealth Management
+Imagine an AI Wealth Manager system designed to recommend investment strategies based on user preferences:   
    
-User Query: "Find me a red summer dress in medium size."   
+User Query: "Find me a low-risk investment with high returns."   
 Vectorization: The query is converted into a vector.   
-Semantic Search: The vector is used to search a vector database of clothing items.   
-Data Retrieval: The most relevant items (red, summer dresses, medium size) are retrieved.   
-Prompt Generation: These items are used to create a prompt for the LLM.   
-LLM Response: The LLM generates a response with specific and accurate recommendations for the user.   
+Semantic Search: The vector is used to search a vector database of investment options.   
+Data Retrieval: The most relevant options (low-risk investments with high returns) are retrieved.   
+Advice Generation: These options are used to create a prompt for the AI model.   
+AI Response: The AI model generates a response with specific and accurate investment recommendations for the user.   
    
-In summary, vectors are essential for transforming unstructured data into a format that Generative AI can effectively process, enabling tasks like semantic search, contextual understanding, and precise data retrieval.   
-
-
-[Learn more about Generative AI here](https://www.confluent.io/learn/generative-ai/)   
+In summary, vectors are essential for transforming unstructured financial data into a format that AI Wealth Management can effectively process, enabling tasks like semantic search, contextual understanding, and precise data retrieval.   
 
 ## Getting started ##
 
-In this github example, retail data from source systems will be vector encoded in real-time as data changes. It will be inserted as the data sourced from a connector int a topic.  It will then be converted into a vector with flink SQL inserted into a new topic.  The connector architecture will then sink this data into a vector database. This GitHub example shows you how to do this first step of hydrating and maintaing a vector database with out using any batch ETL processes. 
+In this github example, financial data from source systems will be vector encoded in real-time as data changes. It will be inserted as the data sourced from a connector into a topic. It will then be converted into a vector with Flink SQL and inserted into a new topic. The connector architecture will then sink this data into a vector database. This GitHub example shows you how to do this first step of hydrating and maintaining a vector database without using any batch ETL processes. 
 
-Next the Gennerative AI application will query this vector database. With the user profile data and questions the meaning will be matched to the size of clothing and the fashion type requested by the user's query. The results will be sent to the LLM as prompts, ensuring that the recommendations made by the LLM are specific and accurate.
-[See a demo of the vector database query in action here](https://www.youtube.com/watch?v=pLU7dS9DJJg)    
-[The github behind this demo is here](https://github.com/brittonlaroche/GenAI-ChatGPT4-Confluent-MongoDB-Vector-Retail/)
+Next, the AI Wealth Manager application will query this vector database. With the user profile data and questions, the meaning will be matched to the investment preferences and risk tolerance requested by the user's query. The results will be sent to the AI model as prompts, ensuring that the recommendations made by the AI are specific and accurate.
 
-Traditional developers often rely on batch processes to vector enocde their data, leading to stale data and a labyrinth of point-to-point ETL integrations that demand constant maintenance. But what if there was a better way? Imagine building and maintaining a vector database with real-time data, free from the cumbersome batch ETL processes.
+Traditional developers often rely on batch processes to vector encode their data, leading to stale data and a labyrinth of point-to-point ETL integrations that demand constant maintenance. But what if there was a better way? Imagine building and maintaining a vector database with real-time data, free from the cumbersome batch ETL processes.
 
-This GitHub repository is your gateway to that future. Dive in and discover how to revolutionize your approach to data augmentation for Generative AI, making your workflows smarter, faster, and more efficient. Let's get started on transforming the way you handle data!  
+This GitHub repository is your gateway to that future. Dive in and discover how to revolutionize your approach to data augmentation for AI Wealth Management, making your workflows smarter, faster, and more efficient. Let's get started on transforming the way you handle financial data!  
    
 ![Flink SQL from CC GUI](/img/DataAugmentation.png)
 
@@ -128,18 +123,18 @@ To set up a MongoDB Atlas account, follow these steps:
 For more detailed instructions, refer to the MongoDB Atlas documentation.
 
 ## DataGen Connector
-Before we can convert data into vectors, we need some sample data. Setting up a connector to a retail database would be time-consuming, so for the purposes of this demo, we will generate some random data using Confluent Cloud's datagen connector. To get started, we need to create the datagen connector and have it insert data into a `product-updates` topic.  
+Before we can convert data into vectors, we need some sample data. Setting up a connector to a financial database would be time-consuming, so for the purposes of this demo, we will generate some random data using Confluent Cloud's datagen connector. To get started, we need to create the datagen connector and have it insert data into a `wealth-management` topic.  
 
 [Oracle Connector Example in Github Here](https://github.com/brittonlaroche/Oracle-Confluent-MongoDB)
 
 ![Flink SQL from CC GUI](/img/setupconnector.png) 
 
-Create a topic named `product-updates` 
-Set up the datagen conector for product updates... Add a new connector, select datagen, then use the link for "additional configuration"    
+Create a topic named `wealth-management` 
+Set up the datagen connector for wealth management data... Add a new connector, select datagen, then use the link for "additional configuration"    
    
 ![Datagen](/img/datagen.png) 
 
-Use the **product-updates** topic.   
+Use the **wealth-management** topic.   
 You will need an api key, use one if you have it if not create one and save the secret.   
 new connector --> datagen --> custom schema on configuration tab  
 
@@ -147,19 +142,19 @@ Use the link for "additional configuration" and select JSON_SR for JSON and Sche
    
 ![Additional Config](/img/additionalconfig.png) 
    
-Now we need a custom schema for product updates, we will use the custom schema "Provide Your Own Schema" on configuration tab.  
+Now we need a custom schema for wealth management data, we will use the custom schema "Provide Your Own Schema" on configuration tab.  
    
-Get the product schema that datagen will use to update random products here:      
-[Product Schema](https://raw.githubusercontent.com/brittonlaroche/Confluent-Kafka-Vector-Encoding/main/files/datagen/productSchema.json)   
+Get the wealth management schema that datagen will use to update random financial data here:      
+[Wealth Management Schema](https://raw.githubusercontent.com/brittonlaroche/Confluent-Kafka-Vector-Encoding/main/files/datagen/wealthManagerSchema.json)   
 
 Paste it in the configuration tab.   
 
 ![Flink SQL from CC GUI](/img/additionalconfigjsonsr.png)   
    
-Get the product schema that datagen will use to update random products here:      
-[Product Schema](https://raw.githubusercontent.com/brittonlaroche/Confluent-Kafka-Vector-Encoding/main/files/datagen/productSchema.json)   
+Get the wealth management schema that datagen will use to update random financial data here:      
+[Wealth Management Schema](https://raw.githubusercontent.com/brittonlaroche/Confluent-Kafka-Vector-Encoding/main/files/datagen/wealthManagerSchema.json)   
    
-The datagen connector will generate random product data simulating a real connector from an operational data store recieveing product updates as inventory is recieved from each retail store.
+The datagen connector will generate random financial data simulating a real connector from an operational data store receiving financial updates.
 
 You will need to adjust a couple of settings to get some of the data to display properly in the cloud gui.  Go to the Datagen Connector we just created and under "settings" Set the following parameters:   
    
@@ -167,9 +162,9 @@ You will need to adjust a couple of settings to get some of the data to display 
 `Schema Context: Default`   
 `Max interval between messages (MS): 25000`   
 
-**Trasforms**   
+**Transforms**   
 Add a new value single message transform.   
-For the value of the price field set the spec to `price:float64`   
+For the value of the investment_amount field set the spec to `investment_amount:float64`   
    
 ![Transforms from CC GUI](/img/transforms.png)   
 
@@ -305,14 +300,14 @@ Statement phase is COMPLETED.
 Model 'vector_encoding' with version '1' created.
 ```
 
-#### 3.  Now test the model to generate vector encoding against the real-time product updates
+#### 3.  Now test the model to generate vector encoding against the real-time financial updates
 
 ```
-select  * from `product-updates`, lateral table (ml_predict('vector_encoding', articleType));
+select  * from `wealth-management`, lateral table (ml_predict('vector_encoding', investmentType));
 ```
 ![Flink SQL from CC GUI](/img/flinkVectorEncoding.png)
 
-Very cool! We did vector embedding for the article type, and it was pretty effortless.  Now we need to build some content to vector encode, we want to make it more like natural language.  Lets do this by concatenating fields.   
+Very cool! We did vector embedding for the investment type, and it was pretty effortless.  Now we need to build some content to vector encode, we want to make it more like natural language.  Lets do this by concatenating fields.   
 
 We may also want to enrich this data so we are breaking this down into a few steps.
 
@@ -331,95 +326,76 @@ curl https://api.openai.com/v1/embeddings \
 ```   
    
 
-#### 3. Create a product-content table to hold a new content field
+#### 3. Create a wealth-management-content table to hold a new content field
 This table is backed up by a kafka topic with the same name for storage.
 
 ```
-CREATE TABLE `product-content` (
-    `store_id` INT,                 
-    `product_id`   INT,                         
-    `count`        INT,                         
-    `articleType`  STRING,                      
-    `size`         STRING,                      
-    `fashionType`  STRING,                      
-    `brandName`    STRING,                      
-    `baseColor`    STRING,                      
-    `gender`       STRING,                      
-    `ageGroup`     STRING,                     
-    `price`        DOUBLE,                     
-    `season`       STRING,
+CREATE TABLE `wealth-management-content` (
+    `client_id` INT,                 
+    `investment_id`   INT,                         
+    `investment_amount`        DOUBLE,                         
+    `investmentType`  STRING,                      
+    `riskLevel`         STRING,                      
+    `investmentDuration`  STRING,                      
+    `expectedReturn`    DOUBLE,                      
+    `investmentDate`    STRING,                      
     `content`      STRING
 ) WITH (
   'value.format' = 'json-registry'
 );
 ```
 
-#### 4. Insert data into the product content table
-Lets put in a new field that seems more like a natual language description that we can send to the vector encoding service.  We will create a field called "content" which concatenates all the fields except count which is the number of items in the store.  We can check inventory in a post processing step.
-For now we need a product description the price, store number and product id.
+#### 4. Insert data into the wealth-management-content table
+Lets put in a new field that seems more like a natual language description that we can send to the vector encoding service.  We will create a field called "content" which concatenates all the fields except investment_amount which is the amount of investment.  We can check investment details in a post processing step.
+For now we need an investment description, the investment amount, client id and investment id.
 
 ```
-insert into `product-content` (
-	`store_id`,
-	`product_id`,
-	`count`,
-	`price`,
-	`size`, 
-	`ageGroup`, 
-	`gender`, 
-	`season`, 
-	`fashionType`, 
-	`brandName`, 
-	`baseColor`, 
-	`articleType`,
+insert into `wealth-management-content` (
+	`client_id`,
+	`investment_id`,
+	`investment_amount`,
+	`investmentType`, 
+	`riskLevel`, 
+	`investmentDuration`, 
+	`expectedReturn`, 
+	`investmentDate`, 
 	`content`
 )
-select  `store_id`,
-	`product_id`,
-	`count`,
-	`price`,
-	`size`, 
-	`ageGroup`, 
-	`gender`, 
-	`season`, 
-	`fashionType`, 
-	`brandName`, 
-	`baseColor`, 
-	`articleType`, 
+select  `client_id`,
+	`investment_id`,
+	`investment_amount`,
+	`investmentType`, 
+	`riskLevel`, 
+	`investmentDuration`, 
+	`expectedReturn`, 
+	`investmentDate`, 
 	INITCAP(
 		concat_ws(' ', 
-			size, 
-			ageGroup, 
-			gender, 
-			season, 
-			fashionType, 
-			brandName, 
-			baseColor, 
-			articleType,
-			', price: '||cast(price as string),
-			', store number: '||cast(store_id as string),	
-			', product id: '||cast(product_id as string))
+			investmentType, 
+			riskLevel, 
+			investmentDuration, 
+			expectedReturn, 
+			investmentDate,
+			', investment amount: '||cast(investment_amount as string),
+			', client id: '||cast(client_id as string),	
+			', investment id: '||cast(investment_id as string))
 		) 
-from `product-updates`;
+from `wealth-management`;
 ```
 
-#### 5.  Create the product vector table
-You will notice that the table will create a new " product-vector" kafka topic and that it creates the schema for us. The vector field is an array of floats.
+#### 5.  Create the wealth-management vector table
+You will notice that the table will create a new " wealth-management-vector" kafka topic and that it creates the schema for us. The vector field is an array of floats.
 
 ```
-CREATE TABLE `product-vector` (
-    `store_id` INT,                 
-    `product_id`   INT,                         
-    `count`        INT,                         
-    `articleType`  STRING,                      
-    `size`         STRING,                      
-    `fashionType`  STRING,                      
-    `brandName`    STRING,                      
-    `baseColor`    STRING,                      
-    `gender`       STRING,                      
-    `ageGroup`     STRING,                     
-    `price`        DOUBLE,                     
-    `season`       STRING,
+CREATE TABLE `wealth-management-vector` (
+    `client_id` INT,                 
+    `investment_id`   INT,                         
+    `investment_amount`        DOUBLE,                         
+    `investmentType`  STRING,                      
+    `riskLevel`         STRING,                      
+    `investmentDuration`  STRING,                      
+    `expectedReturn`    DOUBLE,                      
+    `investmentDate`    STRING,                      
     `content`      STRING,
     `vector`      ARRAY<FLOAT>
 ) WITH (
@@ -427,19 +403,19 @@ CREATE TABLE `product-vector` (
 );
 ```
 
-#### 6. Call the embedding function and insert the data into the product-vector table
+#### 6. Call the embedding function and insert the data into the wealth-management-vector table
 This statement will call the vector embedding service and will run in the background in FlinkSQL. For testing or demo purposes you may wish to stop it as it will use tokens against the embedding service.
 You can see this under the running querries tab
 
 ```
-insert into `product-vector` select * from `product-content`,
+insert into `wealth-management-vector` select * from `wealth-management-content`,
 lateral table (ml_predict('vector_encoding', content));
 ```
 To view and stop running Flink SQL statements click the "running statements" tab   
 ![Flink SQL from CC GUI](/img/flinkStatements.png)
 
 #### 7.  Create a sink connector for your favorite vector database
-My favorite is MongoDB Atlas Vector Search. I created the `product-vector` table with additional fields because MongoDB can create a vector index on the vector field and still be able to query the rest of the fields like a regular database.  MongoDB combines the Operational Data Store (ODS) and the Vector search in one place!  The sink connector will create a document. There is a powerful synergy between Kafka, Confluent and MongoDB that we like to call Kafcongo.
+My favorite is MongoDB Atlas Vector Search. I created the `wealth-management-vector` table with additional fields because MongoDB can create a vector index on the vector field and still be able to query the rest of the fields like a regular database.  MongoDB combines the Operational Data Store (ODS) and the Vector search in one place!  The sink connector will create a document. There is a powerful synergy between Kafka, Confluent and MongoDB that we like to call Kafcongo.
 
 Start by opening the Confluent Cloud and MongoDB Atlas clusters in the browser:   
 
@@ -466,7 +442,7 @@ Another github on the power of Confluent with MongoDB Atlas showing how to perfo
 [https://github.com/brittonlaroche/Oracle-Confluent-MongoDB](https://github.com/brittonlaroche/Oracle-Confluent-MongoDB)
 
 ## Binance DataGen Connector
-In addition to the retail data, we can also work with crypto coin data streams from Binance. To get started, we need to create the datagen connector and have it insert data into a `binance` topic.
+In addition to the financial data, we can also work with crypto coin data streams from Binance. To get started, we need to create the datagen connector and have it insert data into a `binance` topic.
 
 Create a topic named `binance`
 Set up the datagen connector for binance data... Add a new connector, select datagen, then use the link for "additional configuration"
@@ -584,7 +560,7 @@ To view and stop running Flink SQL statements click the "running statements" tab
 ![Flink SQL from CC GUI](/img/flinkStatements.png)
 
 #### 5. Create a sink connector for your favorite vector database
-You can follow the same steps as mentioned above for the product-vector table to create a sink connector for the binance-vector table.
+You can follow the same steps as mentioned above for the wealth-management-vector table to create a sink connector for the binance-vector table.
 
 ## Using the ML_EVALUATE Function in Flink SQL
 
@@ -592,14 +568,14 @@ The `ML_EVALUATE` function in Flink SQL allows you to evaluate the performance o
 
 ### Example Usage of ML_EVALUATE
 
-Let's assume you have a model that predicts whether a product will be popular based on its features. You can use the `ML_EVALUATE` function to evaluate the performance of this model.
+Let's assume you have a model that predicts whether an investment will be successful based on its features. You can use the `ML_EVALUATE` function to evaluate the performance of this model.
 
 #### 1. Create a table to store the evaluation results
 
 ```
-CREATE TABLE `product_evaluation` (
-    `store_id` INT,
-    `product_id` INT,
+CREATE TABLE `investment_evaluation` (
+    `client_id` INT,
+    `investment_id` INT,
     `actual_label` STRING,
     `predicted_label` STRING,
     `evaluation_metric` STRING,
@@ -612,18 +588,18 @@ CREATE TABLE `product_evaluation` (
 #### 2. Insert data into the evaluation table using the ML_EVALUATE function
 
 ```
-insert into `product_evaluation`
+insert into `investment_evaluation`
 select
-    `store_id`,
-    `product_id`,
+    `client_id`,
+    `investment_id`,
     `actual_label`,
     `predicted_label`,
     'accuracy' as `evaluation_metric`,
     ml_evaluate('accuracy', `actual_label`, `predicted_label`) as `evaluation_value`
-from `product_predictions`;
+from `investment_predictions`;
 ```
 
-In this example, the `ML_EVALUATE` function calculates the accuracy of the model predictions and stores the results in the `product_evaluation` table.
+In this example, the `ML_EVALUATE` function calculates the accuracy of the model predictions and stores the results in the `investment_evaluation` table.
 
 ### Detailed Explanation of ML_EVALUATE Function
 
@@ -653,43 +629,43 @@ Here are some example queries that use the `ML_EVALUATE` function to calculate d
 #### Calculate Precision
 
 ```
-insert into `product_evaluation`
+insert into `investment_evaluation`
 select
-    `store_id`,
-    `product_id`,
+    `client_id`,
+    `investment_id`,
     `actual_label`,
     `predicted_label`,
     'precision' as `evaluation_metric`,
     ml_evaluate('precision', `actual_label`, `predicted_label`) as `evaluation_value`
-from `product_predictions`;
+from `investment_predictions`;
 ```
 
 #### Calculate Recall
 
 ```
-insert into `product_evaluation`
+insert into `investment_evaluation`
 select
-    `store_id`,
-    `product_id`,
+    `client_id`,
+    `investment_id`,
     `actual_label`,
     `predicted_label`,
     'recall' as `evaluation_metric`,
     ml_evaluate('recall', `actual_label`, `predicted_label`) as `evaluation_value`
-from `product_predictions`;
+from `investment_predictions`;
 ```
 
 #### Calculate F1 Score
 
 ```
-insert into `product_evaluation`
+insert into `investment_evaluation`
 select
-    `store_id`,
-    `product_id`,
+    `client_id`,
+    `investment_id`,
     `actual_label`,
     `predicted_label`,
     'f1_score' as `evaluation_metric`,
     ml_evaluate('f1_score', `actual_label`, `predicted_label`) as `evaluation_value`
-from `product_predictions`;
+from `investment_predictions`;
 ```
 
 These queries demonstrate how to use the `ML_EVALUATE` function to calculate different evaluation metrics and store the results in a table for further analysis.
