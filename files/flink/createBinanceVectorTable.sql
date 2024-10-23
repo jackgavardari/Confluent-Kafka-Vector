@@ -7,5 +7,6 @@ CREATE TABLE binance_vector (
     circulating_supply DOUBLE,
     change_24h_percent DOUBLE,
     content STRING,
-    vector ARRAY<FLOAT>
+    vector ARRAY<FLOAT>,
+    evaluation_result DOUBLE
 );

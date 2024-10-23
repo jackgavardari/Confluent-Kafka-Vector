@@ -14,5 +14,6 @@ CREATE TABLE product_vector (
     season STRING,
     size STRING,
     content STRING,
-    vector ARRAY<DOUBLE>
+    vector ARRAY<DOUBLE>,
+    evaluation_result DOUBLE
 );
