@@ -1,0 +1,93 @@
+{
+    "namespace": "binance",
+    "name": "crypto_coins",
+    "type": "record",
+    "fields": [
+        {"name": "coin_id", "type": {
+                "type": "int",
+                "arg.properties": {
+                    "range": {
+                        "min": 1,
+                        "max": 1000
+                    }
+                }
+            }},
+        {"name": "coin_name", "type": {
+            "type": "string",
+            "arg.properties": {
+                "options": [
+                    "Bitcoin",
+                    "Ethereum",
+                    "Ripple",
+                    "Litecoin",
+                    "Cardano",
+                    "Polkadot",
+                    "Stellar",
+                    "Chainlink",
+                    "Binance Coin",
+                    "Tether"
+                ]
+            }
+        }},
+        {"name": "price_usd", "type": {
+            "type": "bytes",
+            "logicalType": "decimal",
+            "precision": 10,
+            "scale": 2,
+            "arg.properties": {
+                "range": {
+                    "min": 0.01,
+                    "max": 100000.00
+                }
+            }
+        }},
+        {"name": "market_cap_usd", "type": {
+            "type": "bytes",
+            "logicalType": "decimal",
+            "precision": 15,
+            "scale": 2,
+            "arg.properties": {
+                "range": {
+                    "min": 1000000.00,
+                    "max": 1000000000000.00
+                }
+            }
+        }},
+        {"name": "volume_24h_usd", "type": {
+            "type": "bytes",
+            "logicalType": "decimal",
+            "precision": 15,
+            "scale": 2,
+            "arg.properties": {
+                "range": {
+                    "min": 1000.00,
+                    "max": 10000000000.00
+                }
+            }
+        }},
+        {"name": "circulating_supply", "type": {
+            "type": "bytes",
+            "logicalType": "decimal",
+            "precision": 20,
+            "scale": 2,
+            "arg.properties": {
+                "range": {
+                    "min": 1.00,
+                    "max": 1000000000.00
+                }
+            }
+        }},
+        {"name": "change_24h_percent", "type": {
+            "type": "bytes",
+            "logicalType": "decimal",
+            "precision": 5,
+            "scale": 2,
+            "arg.properties": {
+                "range": {
+                    "min": -100.00,
+                    "max": 100.00
+                }
+            }
+        }}
+    ]
+}
