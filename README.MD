@@ -517,3 +517,109 @@ To view and stop running Flink SQL statements click the "running statements" tab
 
 #### 5. Create a sink connector for your favorite vector database
 You can follow the same steps as mentioned above for the product-vector table to create a sink connector for the binance-vector table.
+
+## AI Wealth Management Use Case
+
+### Real-time Data Enrichment
+
+Use Flink SQL to enrich real-time binance data streams with additional information. Create a table to store the enriched data. Use external data sources to enrich the data, such as adding geolocation information to IP addresses. Continuously update the enriched data table with new information as it becomes available.
+
+#### 1. Create an enriched binance table
+This table is backed up by a kafka topic with the same name for storage.
+
+```
+CREATE TABLE `enriched_binance` (
+    `coin_id` INT,
+    `coin_name` STRING,
+    `price_usd` DOUBLE,
+    `market_cap_usd` DOUBLE,
+    `volume_24h_usd` DOUBLE,
+    `circulating_supply` DOUBLE,
+    `change_24h_percent` DOUBLE,
+    `geolocation` STRING,
+    `content` STRING
+) WITH (
+  'value.format' = 'json-registry'
+);
+```
+
+#### 2. Insert data into the enriched binance table
+Let's enrich the binance data with geolocation information.
+
+```
+insert into `enriched_binance` (
+    `coin_id`,
+    `coin_name`,
+    `price_usd`,
+    `market_cap_usd`,
+    `volume_24h_usd`,
+    `circulating_supply`,
+    `change_24h_percent`,
+    `geolocation`,
+    `content`
+)
+select
+    `coin_id`,
+    `coin_name`,
+    `price_usd`,
+    `market_cap_usd`,
+    `volume_24h_usd`,
+    `circulating_supply`,
+    `change_24h_percent`,
+    'USA' as `geolocation`,
+    INITCAP(
+        concat_ws(' ',
+            coin_name,
+            ', price: ' || cast(price_usd as string),
+            ', market cap: ' || cast(market_cap_usd as string),
+            ', volume 24h: ' || cast(volume_24h_usd as string),
+            ', circulating supply: ' || cast(circulating_supply as string),
+            ', change 24h: ' || cast(change_24h_percent as string))
+    )
+from `binance`;
+```
+
+### Real-time Data Aggregation
+
+Use Flink SQL to aggregate real-time binance data streams in real-time. Create a table to store the aggregated data. Use window functions to aggregate data over specific time intervals, such as hourly or daily. Continuously update the aggregated data table with new information as it becomes available.
+
+#### 1. Create an aggregated binance table
+This table is backed up by a kafka topic with the same name for storage.
+
+```
+CREATE TABLE `aggregated_binance` (
+    `coin_name` STRING,
+    `avg_price_usd` DOUBLE,
+    `max_price_usd` DOUBLE,
+    `min_price_usd` DOUBLE,
+    `window_start` TIMESTAMP(3),
+    `window_end` TIMESTAMP(3)
+) WITH (
+  'value.format' = 'json-registry'
+);
+```
+
+#### 2. Insert data into the aggregated binance table
+Let's aggregate the binance data over hourly intervals.
+
+```
+insert into `aggregated_binance` (
+    `coin_name`,
+    `avg_price_usd`,
+    `max_price_usd`,
+    `min_price_usd`,
+    `window_start`,
+    `window_end`
+)
+select
+    `coin_name`,
+    AVG(`price_usd`) as `avg_price_usd`,
+    MAX(`price_usd`) as `max_price_usd`,
+    MIN(`price_usd`) as `min_price_usd`,
+    TUMBLE_START(`proctime`, INTERVAL '1' HOUR) as `window_start`,
+    TUMBLE_END(`proctime`, INTERVAL '1' HOUR) as `window_end`
+from `binance`
+group by
+    `coin_name`,
+    TUMBLE(`proctime`, INTERVAL '1' HOUR);
+```
