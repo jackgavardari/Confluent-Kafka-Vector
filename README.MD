@@ -397,5 +397,123 @@ And we are done!
 Another github on the power of Confluent with MongoDB Atlas showing how to perform legacy migration from relational databases like Oracle to a modern cloud native database like MongoDB Atlas is below.  The github is useful for trouble shooting connector data types with Single Message Transform (SMT):   
 [https://github.com/brittonlaroche/Oracle-Confluent-MongoDB](https://github.com/brittonlaroche/Oracle-Confluent-MongoDB)
 
+## Binance DataGen Connector
+In addition to the retail data, we can also work with crypto coin data streams from Binance. To get started, we need to create the datagen connector and have it insert data into a `binance` topic.
 
+Create a topic named `binance`
+Set up the datagen connector for binance data... Add a new connector, select datagen, then use the link for "additional configuration"
 
+Use the **binance** topic.
+You will need an api key, use one if you have it if not create one and save the secret.
+new connector --> datagen --> custom schema on configuration tab
+
+Use the link for "additional configuration" and select JSON_SR for JSON and Schema Registry.
+
+Now we need a custom schema for binance data, we will use the custom schema "Provide Your Own Schema" on configuration tab.
+
+Get the binance schema that datagen will use to update random crypto coin data here:
+[Binance Schema](https://raw.githubusercontent.com/jackgavardari/Confluent-Kafka-Vector/main/files/datagen/binanceSchema.json)
+
+Paste it in the configuration tab.
+
+The datagen connector will generate random binance data simulating a real connector from an operational data store receiving crypto coin updates.
+
+You will need to adjust a couple of settings to get some of the data to display properly in the cloud gui. Go to the Datagen Connector we just created and under "settings" Set the following parameters:
+
+`JSON output decimal format: BASE64`
+`Schema Context: Default`
+`Max interval between messages (MS): 25000`
+
+**Transforms**
+Add a new value single message transform.
+For the value of the price_usd field set the spec to `price_usd:float64`
+
+## Flink SQL for Binance Data
+
+### First Steps
+Flink can be accessed through the environments menu on the left-hand side of the Confluent Cloud interface. Select your environment, then navigate to the "Flink SQL" tab, which is located in the middle of the screen, instead of the default "Clusters" tab.
+
+#### 1. Create a binance-content table to hold a new content field
+This table is backed up by a kafka topic with the same name for storage.
+
+```
+CREATE TABLE `binance-content` (
+    `coin_id` INT,
+    `coin_name` STRING,
+    `price_usd` DOUBLE,
+    `market_cap_usd` DOUBLE,
+    `volume_24h_usd` DOUBLE,
+    `circulating_supply` DOUBLE,
+    `change_24h_percent` DOUBLE,
+    `content` STRING
+) WITH (
+  'value.format' = 'json-registry'
+);
+```
+
+#### 2. Insert data into the binance content table
+Let's put in a new field that seems more like a natural language description that we can send to the vector encoding service. We will create a field called "content" which concatenates all the fields.
+
+```
+insert into `binance-content` (
+    `coin_id`,
+    `coin_name`,
+    `price_usd`,
+    `market_cap_usd`,
+    `volume_24h_usd`,
+    `circulating_supply`,
+    `change_24h_percent`,
+    `content`
+)
+select
+    `coin_id`,
+    `coin_name`,
+    `price_usd`,
+    `market_cap_usd`,
+    `volume_24h_usd`,
+    `circulating_supply`,
+    `change_24h_percent`,
+    INITCAP(
+        concat_ws(' ',
+            coin_name,
+            ', price: ' || cast(price_usd as string),
+            ', market cap: ' || cast(market_cap_usd as string),
+            ', volume 24h: ' || cast(volume_24h_usd as string),
+            ', circulating supply: ' || cast(circulating_supply as string),
+            ', change 24h: ' || cast(change_24h_percent as string))
+    )
+from `binance`;
+```
+
+#### 3. Create the binance vector table
+You will notice that the table will create a new "binance_vector" kafka topic and that it creates the schema for us. The vector field is an array of floats.
+
+```
+CREATE TABLE `binance_vector` (
+    `coin_id` INT,
+    `coin_name` STRING,
+    `price_usd` DOUBLE,
+    `market_cap_usd` DOUBLE,
+    `volume_24h_usd` DOUBLE,
+    `circulating_supply` DOUBLE,
+    `change_24h_percent` DOUBLE,
+    `content` STRING,
+    `vector` ARRAY<FLOAT>
+) WITH (
+  'value.format' = 'json-registry'
+);
+```
+
+#### 4. Call the embedding function and insert the data into the binance-vector table
+This statement will call the vector embedding service and will run in the background in FlinkSQL. For testing or demo purposes you may wish to stop it as it will use tokens against the embedding service.
+You can see this under the running queries tab
+
+```
+insert into `binance-vector` select * from `binance-content`,
+lateral table (ml_predict('vector_encoding', content));
+```
+To view and stop running Flink SQL statements click the "running statements" tab
+![Flink SQL from CC GUI](/img/flinkStatements.png)
+
+#### 5. Create a sink connector for your favorite vector database
+You can follow the same steps as mentioned above for the product-vector table to create a sink connector for the binance-vector table.
