@@ -1,10 +1,11 @@
 CREATE TABLE binance_vector (
     coin_id INT,
     coin_name STRING,
-    price_usd DECIMAL(10, 2),
-    market_cap_usd DECIMAL(15, 2),
-    volume_24h_usd DECIMAL(15, 2),
-    circulating_supply DECIMAL(20, 2),
-    change_24h_percent DECIMAL(5, 2),
-    vector ARRAY<DOUBLE>
+    price_usd DOUBLE,
+    market_cap_usd DOUBLE,
+    volume_24h_usd DOUBLE,
+    circulating_supply DOUBLE,
+    change_24h_percent DOUBLE,
+    content STRING,
+    vector ARRAY<FLOAT>
 );
