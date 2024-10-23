@@ -59,6 +59,74 @@ This GitHub repository is your gateway to that future. Dive in and discover how 
    
 ![Flink SQL from CC GUI](/img/DataAugmentation.png)
 
+## Prerequisites
+
+Before you begin, ensure you have the following tools installed and configured on your system:
+
+### Terraform
+
+Terraform is an open-source infrastructure as code software tool that provides a consistent CLI workflow to manage hundreds of cloud services. 
+
+* [Terraform Installation Guide](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+
+To verify the installation of Terraform, you can follow these steps:
+
+* Open a terminal or command prompt.
+* Type `terraform -v` and press Enter.
+* Check the output for the Terraform version information. If Terraform is installed correctly, it will display the version number.
+
+If you see the version number, Terraform is installed correctly. If you encounter an error, you may need to reinstall Terraform following the installation instructions provided in the repository's `README.MD`.
+
+### AWS CLI
+
+The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services. 
+
+* [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+
+To verify the installation of AWS CLI, you can follow these steps:
+
+* Open a terminal or command prompt.
+* Type `aws --version` and press Enter.
+* Check the output for the AWS CLI version information. If AWS CLI is installed correctly, it will display the version number.
+
+If you see the version number, AWS CLI is installed correctly. If you encounter an error, you may need to reinstall AWS CLI following the installation instructions provided in the repository's `README.MD`.
+
+To configure AWS CLI, follow these steps:
+
+* Download and install the AWS CLI from the official website here.
+* Open a terminal or command prompt.
+* Run the command `aws --version` to verify the installation. You should see the AWS CLI version information.
+* Configure the AWS CLI by running the command `aws configure`.
+* When prompted, enter your AWS Access Key ID, Secret Access Key, default region name, and default output format.
+* Verify the configuration by running a simple AWS CLI command, such as `aws s3 ls`, to list your S3 buckets.
+
+For more details, refer to the instructions in the `README.MD`.
+
+### Python 3.11
+
+Ensure you have Python 3.11 installed on your system. 
+
+* [Python 3.11 Installation Guide](https://www.python.org/downloads/release/python-3110/)
+
+### MongoDB Atlas Account
+
+MongoDB Atlas is a fully-managed cloud database service that handles all the complexity of deploying, managing, and healing your deployments on the cloud service provider of your choice (AWS, Azure, or GCP).
+
+To set up a MongoDB Atlas account, follow these steps:
+
+* Go to the MongoDB Atlas website and click on the "Start Free" button.
+* Sign up for a new account using your email address or sign in with an existing Google account.
+* Once signed in, you will be prompted to create a new project. Enter a project name and click "Next".
+* Choose a cloud provider and region for your cluster. MongoDB Atlas supports AWS, Google Cloud, and Azure. Select the provider and region that best suits your needs.
+* Configure your cluster by selecting the cluster tier, which determines the resources and cost of your cluster. For a free tier, select the M0 Sandbox.
+* Click "Create Cluster" to provision your cluster. This process may take a few minutes.
+* After the cluster is created, you will be prompted to set up database access. Create a new database user by providing a username and password. Make sure to save these credentials as you will need them to connect to your cluster.
+* Set up network access by adding your IP address to the IP whitelist. This allows your local machine to connect to the MongoDB Atlas cluster.
+* Once the database user and network access are configured, click "Finish and Close".
+* You can now connect to your MongoDB Atlas cluster using the connection string provided in the Atlas UI. Use this connection string in your application to interact with the MongoDB database.
+
+For more detailed instructions, refer to the MongoDB Atlas documentation.
+
 ## DataGen Connector
 Before we can convert data into vectors, we need some sample data. Setting up a connector to a retail database would be time-consuming, so for the purposes of this demo, we will generate some random data using Confluent Cloud's datagen connector. To get started, we need to create the datagen connector and have it insert data into a `product-updates` topic.  
 
