@@ -6,5 +6,6 @@ CREATE TABLE binance_vector (
     volume_24h_usd DECIMAL(15, 2),
     circulating_supply DECIMAL(20, 2),
     change_24h_percent DECIMAL(5, 2),
+    content STRING,
     vector ARRAY<DOUBLE>
 );
